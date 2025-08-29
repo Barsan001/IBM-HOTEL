@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LuxStay - Premium Hotel Booking</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+
+    :root {
+      --primary: #282834;
+      --secondary: #282834;
+      --light: #f8f9fa;
+      --dark: #000000;
+      --gray: #72777b;
+      --light-gray: #d5d9dd;
+    }
+
+    .cursor{
+      height: 10px;
+      width: 10px;
+      color: #ffffff;
+    }
+
+    body {
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+      color:rgb(255, 255, 255) bold;
+      background-color: rgba(56, 56, 56, 0.279);
+      line-height: 1.6;
+    }
+
+    h1,h2,h3,h4 {
+      font-family:'Lucida Fax';
+      font-weight:550;
+    }
+
+    .container {max-width:1200px; margin:0 auto; padding:0 20px;}
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.pinimg.com/1200x/2b/bb/e5/2bbbe5889f3b0308888705733f58e681.jpg');
+      background-size:cover;
+      background-position:center;
+      color:rgb(255, 255, 255);
+      padding:50px 0 100px;
+      text-align:center;
+      align-items: center;
+      animation: hero 2s infinite;
+    }
+    @keyframes hero{
+      10%{color: rgb(255, 101, 101);}
+      25%{color: #95ff0b;}
+      50%{color:#fff}
+      80%{color: yellow}
+    }
+    .hero h1 {font-size:50px; margin-bottom:20px;}
+    .hero p {
+      font-size:25px;
+      width: 900;
+      color: rgb(252, 255, 255);
+      opacity:.9;}
+
+
+    /* Booking Form */
+    .booking-form {
+      background: #00e5ff0d;
+      border-radius:8px;
+      padding:30px;
+      margin-top:-50px;
+      position:relative;
+      z-index:10;
+    }
+    .form-title {text-align:center; margin-bottom:30px;color:rgb(1, 73, 255);}
+    .form-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px;}
+    .form-group label {display:block; margin-bottom:11px; font-weight:400;}
+    
+  .form-title{
+    text-size-adjust: 20px;
+    height:100;
+    width:900;
+  }
+    .location-checkboxes {
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;
+    }
+    .location-checkboxes label {
+      display:flex; align-items:center;
+      background:var(--light);
+      padding:8px 15px;
+      border-radius:20px;
+      cursor:pointer;
+      transition:.3s;
+    }
+    .location-checkboxes label:hover {background:#ff004f}
+    .location-checkboxes input {margin-right:10px;}
+
+    .search-btn {
+      background:#282834;
+      color:rgb(255, 255, 255);
+      border:0;
+      padding:12px 20px;
+      border-radius:4px;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+      transition:.2s;
+      width:100%;
+      margin-top:25px;
+      gap: 20px;
+    }
+    .search-btn:hover {background:#ff004f;}
+
+    /* Hotels Section */
+    .popular-hotels {padding:80px 0; background:var(--light);}
+    .hotels-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+    .hotel-card {
+      background:rgba(56, 56, 56, 0.279);
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow:0 3cqi 3cqi rgba(255, 2, 2, 0.395);
+      transition:.3s;
+    }
+    .hotel-card:hover {transform:translateY(-5px);}
+    .hotel-image {height:200px; overflow:hidden; cursor: pointer;}
+    .hotel-image img {width:100%; height:100%; object-fit:cover; transition:.3s;}
+    .hotel-card:hover .hotel-image img {transform:scale(1.05);}
+    .hotel-info {padding:20px;}
+    .hotel-name {font-size:20px; margin-bottom:10px;}
+    .hotel-location {color:rgb(39, 37, 37); margin-bottom:15px; display:flex; align-items:center;}
+    .hotel-location i {margin-right:8px;}
+    .hotel-price {color:rgb(255, 0, 0); font-size:22px; font-weight:600; margin-bottom:15px;}
+    .hotel-price span {font-size:14px; color:rgb(0, 0, 0)}
+    .book-now {
+      display:block;
+      text-align:center;
+      background:var(--primary);
+      color:rgb(255, 251, 251);
+      font-size: 18px;
+      padding:10px 15px;
+      border-radius:4px;
+      text-decoration:none;
+      font-weight:500;
+      transition:.3s;
+    }
+    .book-now:hover {background:#ff004f;}
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color:rgba(255, 255, 255, 0.805);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-container {
+      background: rgba(83, 83, 83, 0.183);
+      width: 100%;
+      max-width: 1000px;
+      max-height: 90vh;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(50px);
+      transition: transform 0.4s ease;
+    }
+    
+    .modal-overlay.active .modal-container {
+      transform: translateY(0);
+    }
+    
+    .modal-header {
+      padding: 20px;
+      height: 200;
+      width: 300;
+      background: #282834;
+      color: rgb(255, 255, 255);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .close-modal {
+      background: none;
+      border: none;
+      color: rgb(255, 253, 253);
+      font-size: 25px;
+      cursor: pointer;
+    }
+    
+    .modal-content {
+      display: flex;
+      overflow: hidden;
+    }
+    
+    .modal-gallery {
+      width: 50%;
+      position: relative;
+    }
+    
+    .gallery-main {
+      height: 300px;
+      overflow: hidden;
+    }
+    
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .gallery-thumbnails {
+      display: flex;
+      padding: 10px;
+      gap: 10px;
+      overflow-x: auto;
+    }
+    
+    .gallery-thumb {
+      width: 80px;
+      height: 60px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+      flex-shrink: 0;
+    }
+    
+    .gallery-thumb:hover, .gallery-thumb.active {
+      opacity: 1;
+    }
+    
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .modal-details {
+      width: 50%;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    
+    .hotel-description {
+      margin-bottom: 20px;
+      font-size: 15px;
+      color:rgb(0, 0, 0) bold;
+    }
+    
+    .amenities-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .amenity {
+      background:rgba(56, 56, 56, 0.279);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 15px;
+    }
+    
+    .booking-form-modal {
+      background:rgba(0, 0, 255, 0.138);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    
+    .form-group-modal {
+      margin-bottom: 15px;
+    }
+    
+    .form-group-modal label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #000000;
+    }
+    
+    .form-group-modal input,
+    .form-group-modal select {
+      font-size: 12px;
+      color: #000000;
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #000000;
+      border-radius: 4px;
+    }
+    
+    .guest-counter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .counter-btn {
+      width: 35px;
+      height: 35px;
+      font-size:16px;
+      border-radius: 50%;
+      border: 1px solid black;
+      background: rgba(0, 55, 255, 0.377);
+      color:rgb(0, 0, 0);
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .counter-value {
+      min-width: 30px;
+      text-align: center;
+    }
+    
+    .confirm-booking {
+      background:#282834;
+      color:#ffffff;
+      font-size:16px;
+      width:600;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 15px;
+      transition: 0.2s;
+    }
+    
+    .confirm-booking:hover {
+      background:#ff004f;
+    }
+    
+    .booking-confirmation {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: rgb(255, 255, 255);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 1100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .booking-confirmation.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .confirmation-icon {
+      font-size: 48px;
+      color: #4caf50;
+      margin-bottom: 15px;
+    }
+    
+    /* Responsive */
+    @media (max-width:768px) {
+      .hero h1{font-size:36px;}
+      .booking-form{margin-top:0;}
+      .hotels-grid{grid-template-columns:1fr;}
+      .location-checkboxes{flex-direction:column; gap:5px;}
+      
+      .modal-content {
+        flex-direction: column;
+      }
+      
+      .modal-gallery, .modal-details {
+        width: 100%;
+      }
+      
+      .modal-container {
+        max-height: 95vh;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container1">
+      <h1>Find Your Dream Stay</h1>
+      <p>Discover luxury hotels in your favorite destinations</p>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <div class="container">
+    <div class="booking-form">
+      <!-- <h2 class="form-title">Search Hotel Locations</h2> -->
+      <form id="locationForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label><pre>                                                  
+
+            </pre></label>
+            <div class="location-checkboxes">
+              <label><input type="checkbox" name="location" value="Digha">Digha</label>
+              <label><input type="checkbox" name="location" value="Mumbai">Mumbai</label>
+              <label><input type="checkbox" name="location" value="Puri">Puri</label>
+              <label><input type="checkbox" name="location" value="Goa">Goa</label>
+              <label><input type="checkbox" name="location" value="Maldives">Maldives</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="search-btn">Search Hotels</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popular Hotels -->
+  <section class="popular-hotels" id="allHotels">
+    <div class="container">
+      <h2 class="section-title">Popular Hotels</h2>
+      <div class="hotels-grid">
+        
+        <!-- Digha Hotels -->
+        <div class="hotel-card" data-id="digha-1" data-location="Digha">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/1200x/d5/4f/16/d54f165565fd033a1585e6f9e171f9ce.jpg" alt="Hotel Luxury Life">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Digha</div>
+            <div class="hotel-price">₹1500 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Mumbai Hotels -->
+        <div class="hotel-card" data-id="mumbai-1" data-location="Mumbai">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/736x/35/a4/ad/35a4ad5bbeff118e4db4ccb47afb0929.jpg" alt="Hotel Luxury Life">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Mumbai</div>
+            <div class="hotel-price">₹2000 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Puri Hotels -->
+        <div class="hotel-card" data-id="puri-1" data-location="Puri">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/736x/ed/51/76/ed5176a4c939e3721205d54bc69796e1.jpg "alt=Hotel Luxury Life">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Puri</div>
+            <div class="hotel-price">₹2500 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Goa Hotels -->
+        <div class="hotel-card" data-id="goa-1" data-location="Goa">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/736x/45/bf/ac/45bfacc45f728b979dbcc3ab38e5e313.jpg" alt="Golden Beach Luxury Resort">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> Goa Beachfront, Goa</div>
+            <div class="hotel-price">₹3500 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Mumbai 2 -->
+        <div class="hotel-card" data-id="mumbai-2" data-location="Mumbai">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/736x/56/ff/c2/56ffc25278f97a60b6ef4aef7e9ed901.jpg" alt="Hotel Marine Drive">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Mumbai</div>
+            <div class="hotel-price">₹4000 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Maldives Hotels -->
+        <div class="hotel-card" data-id="maldives-1" data-location="Maldives">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/1200x/91/3b/01/913b0189825e4824e0e03ec579b3b2a5.jpg" alt="Ocean Waves Resort">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Maldives</div>
+            <div class="hotel-price">₹5000 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <div class="hotel-card" data-id="maldives-2" data-location="Maldives">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/736x/2f/0b/0a/2f0b0ac3e758072e62c48032d3b26467.jpg" alt="Sunrise Beach Resort">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Maldives</div>
+            <div class="hotel-price">₹4500 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <div class="hotel-card" data-id="maldives-3" data-location="Maldives">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/1200x/ca/7f/e1/ca7fe1a89fc351cfd7956b289f071041.jpg" alt="Coral Reef Resort">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Maldives</div>
+            <div class="hotel-price">₹5500 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Digha 2 -->
+        <div class="hotel-card" data-id="digha-2" data-location="Digha">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/1200x/60/1c/7e/601c7e86942ac616d2fd00ca4d1324c9.jpg" alt="Hotel Mountain Valley">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Digha</div>
+            <div class="hotel-price">₹2500 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Goa 2 -->
+        <div class="hotel-card" data-id="goa-2" data-location="Goa">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/1200x/25/7a/20/257a20d96f4d8aca6128d4f38abfb19d.jpg">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Goa</div>
+            <div class="hotel-price">₹4000 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Puri 2 -->
+        <div class="hotel-card" data-id="puri-2" data-location="Puri">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/736x/f0/1e/af/f01eaf35509c6c83205be6da1f4151b6.jpg" alt="Hotel Sunset Valley">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Puri</div>
+            <div class="hotel-price">₹3500 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Goa 3 -->
+        <div class="hotel-card" data-id="goa-3" data-location="Goa">
+          <div class="hotel-image">
+            <img src="https://i.pinimg.com/736x/78/12/22/7812222512c5adb1aef7d4f1e9c9a3b3.jpg" alt="Hotel Sunset Valley Goa">
+          </div>
+          <div class="hotel-info">
+            <h3 class="hotel-name">Hotel Luxury Life</h3>
+            <div class="hotel-location"><i class="fas fa-map-marker-alt"></i>Goa</div>
+            <div class="hotel-price">₹4000 <span>per night</span></div>
+            <a href="#" class="book-now">Book Now</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Structure -->
+  <div class="modal-overlay" id="hotelModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modalHotelName">Hotel Luxury Life</h3>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-content">
+        <div class="modal-gallery">
+          <div class="gallery-main">
+            <img id="mainImage" src="https://i.pinimg.com/1200x/41/ce/49/41ce493802c8bda1da72aa14db6c1199.jpg" alt="Hotel image">
+          </div>
+          <div class="gallery-thumbnails">
+            <!-- Thumbnails will be added by JavaScript -->
+          </div>
+        </div>
+        
+        <div class="modal-details">
+          <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> <span id="modalLocation"></span></div>
+          <div class="hotel-price" id="modalPrice"></div>
+          <p class="hotel-description" id="modalDescription">Experience luxury at its finest with our premium accommodations. Enjoy stunning views, exceptional service, and all the amenities you need for a perfect stay.</p>
+          
+          <h4>Amenities</h4>
+          <div class="amenities-list">
+            <span class="amenity">Free WiFi</span>
+            <span class="amenity">Swimming Pool</span>
+            <span class="amenity">Spa</span>
+            <span class="amenity">Restaurant</span>
+            <span class="amenity">Air Conditioning</span>
+            <span class="amenity">Room Service</span>
+          </div>
+          
+          <!-- <div class="booking-form-modal">
+            <h4>Book Your Stay</h4>
+            <div class="form-group-modal">
+              <label for="checkIn">Check-in Date</label>
+              <input type="date" id="checkIn">
+            </div>
+            <div class="form-group-modal">
+              <label for="checkOut">Check-out Date</label>
+              <input type="date" id="checkOut">
+            </div>
+            <div class="form-group-modal">
+              <label>Number of Guests</label>
+              <div class="guest-counter">
+                <button type="button" class="counter-btn" id="decreaseGuests">-</button>
+                <span class="counter-value" id="guestCount">1</span>
+                <button type="button" class="counter-btn" id="increaseGuests">+</button>
+              </div>
+            </div>
+            <button type="button" class="confirm-booking" id="confirmBooking">Confirm Booking</button>
+          </div> -->
+            <button type="button" class="confirm-booking" id="confirmBooking">Continue Booking -></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Confirmation Message -->
+  <div class="booking-confirmation" id="bookingConfirmation">
+    <div class="confirmation-icon">✓</div>
+    <h3>Booking Confirmed!</h3>
+    <p>Your reservation has been successfully made.</p>
+    <p>Thank you for choosing Hotel Luxury Life.</p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hotel data with additional images and descriptions
+      const hotelData = {
+        "digha-1": {
+          name: "Hotel Luxury Life",
+          location: "Digha",
+          price: "₹1500",
+          description: "Nestled in the heart of Digha, this hotel offers luxurious rooms, a beach-facing position, and stunning views of the Bay of Bengal. Guests can enjoy fine dining, spacious banquet facilities, and exceptional service.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/671521157.jpg?k=9480ea7f541cfa737f4704109be49f65fb12e8b20e36c06a47b1f86770abe396&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375777708.jpg?k=0c844aae5097ff517e62cc7e36c05f60f804c79b5eb78cffd5078d835738e36b&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359204.jpg?k=e028cac6dfef41c7dcbf32c5e07e79bc2efa83dca656214cacadc86899e13a6e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375777713.jpg?k=775a2c5c5aec66e522e82d049798234985466ba064b8477a1839f28a5b0d8239&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375777424.jpg?k=f1ebcaf6b17849a80da78a65937ace57201def774e4b56a0481af7ed8423a4c9&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708538.jpg?k=807b2bcf8555fc27ed18765b01babfe97d92d75c89c4684431280dcb2ed1df0e&o="
+          ]
+        },
+        "digha-2": {
+          name: "Hotel Luxury Life",
+          location: "Digha",
+          price: "₹2000",
+          description: "As one of Digha's premier 4-star hotels, it offers luxurious rooms, a beach-facing position, and stunning views of the Bay of Bengal. Guests can enjoy fine dining, spacious banquet facilities, and exceptional service.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/671522038.jpg?k=d757dff28dc52ca18dc98482ed2b7b27f63500eba479951477ac924608dc9d1a&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359197.jpg?k=587c1c37814da6868da63fda4486247e701f82cb358fc447747960fc8939236e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359198.jpg?k=10cc02d591eedd259398d756b55c196abc4501ee932835afa601666d13871799&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708540.jpg?k=a36c13ed26a8aeaa3c0dac8e38908a2196e30e9b4a36a5e395698637e25a7016&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708544.jpg?k=eff0ca3c55ca34700f46316b776d87abc825ac4bb3d5f67b9453b71b0a548333&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708566.jpg?k=a44a057d71932d31dab9970bec89dbc5d4005ddb455e930f5365649ee2420101&o="
+          ]
+        },
+        "mumbai-1": {
+          name: "Hotel Luxury Life",
+          location: "Andheri East, Mumbai",
+          price: "₹2000",
+          description: "As one of Mumbai's premier 4-star hotels, it offers luxurious rooms, a beach-facing position, and stunning views of the Bay of Bengal. Guests can enjoy fine dining, spacious banquet facilities, and exceptional service.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/671520892.jpg?k=13b1840db6299bd5e420f6e4aa4db9ffa7a85e2db01e49259379302a1d21a317&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384357983.jpg?k=caffb0428160f6091a813e98f5c998ad1e6caa1a75f78e4d4d894566231b5655&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708557.jpg?k=499de18456982356bfe287e4cd3adf17a216b03504bb5e97dd4efd5023accd6f&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708586.jpg?k=0f32979cddfe0bc8f37e431e0f41f7a7fe008aebfa565770d94ede459b2a77cf&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708578.jpg?k=fdd0b8d3c46a191ed31f26c427ec64da432e07c280683a24a280db5ce77e9cd8&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708575.jpg?k=ab6416f80609170759ee75f3550146002441d970d304c17fc6d9709fa6682a95&o="
+          ]
+        },
+        "mumbai-2": {
+          name: "Hotel Luxury Life",
+          location: "Mumbai",
+          price: "₹3000",
+          description: "As one of Mumbai's premier 5-star hotels, it offers luxurious rooms, a beach-facing position, and stunning views of the Bay of Bengal. Guests can enjoy fine dining, spacious banquet facilities, and exceptional service.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/671521228.jpg?k=41c7ef776235cbb05e88837dfe4716e8bdcef3970be288e0c1576b17e1b3e61c&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384358709.jpg?k=c2f6612359efe7a46714048fd2fa0e0f54c1b66adb3f30b2f5454873c8cf7655&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708590.jpg?k=378616d7eb286bcc62e26005b1bdb07f125897e1dcfeeadae9b22a12a5e50702&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708592.jpg?k=d68f501e67ef84863c4b38a820405207c61dad6b714c8afe08031c76818c34f0&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384357991.jpg?k=a92a76318f0a3f7d298c522e9f03dbd5cf5fcacba2c7cdddd150d11f12e86a70&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384358700.jpg?k=bb0e3dac941ceea6bbc1b0abe7b7da6dccaefe1b12dbc739343a2d7ad0318f12&o="
+          ]
+        },
+        "puri-1": {
+          name: "Hotel Luxury Life",
+          location: "Lord Jagannath Temple, Puri",
+          price: "₹2500",
+          description: "As one of Puri's premier 5-star hotels, it offers luxurious rooms, a beach-facing position, and stunning views of the Bay of Bengal. Guests can enjoy fine dining, spacious banquet facilities, and exceptional service.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/671520910.jpg?k=88d4e6fce5c290e8a3268e7dc9949ad836714c4b7b495ad4dceb39e0b8559e53&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375722228.jpg?k=95c1738e73b7b1e97ada583b2735f4909641778712930ee43a4ebc1e48050f80&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359204.jpg?k=e028cac6dfef41c7dcbf32c5e07e79bc2efa83dca656214cacadc86899e13a6e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375777843.jpg?k=3be9085f6ffb3898e96846f46198ddfe4ab3009b4669105f3dbabc605f3982f3&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708526.jpg?k=b1e005a1418a022a386d58e482f74cd2f3cede1e59d1a68177faebe95dc9d577&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708566.jpg?k=a44a057d71932d31dab9970bec89dbc5d4005ddb455e930f5365649ee2420101&o="
+          ]
+        },
+        "puri-2": {
+          name: "Hotel Luxury Life",
+          location: "Lord Jagannath Temple, Puri",
+          price: "₹3000",
+          description: "This 5-star resort boasts 90 beautifully appointed rooms and suites with breathtaking views of the Bay of Bengal. Enjoy fine dining at one of three exceptional F&B outlets, relax at the spa, or unwind by the swimming pool.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/671523878.jpg?k=d230ec1caaf638b3ed91ba95c443b554c13f76c64d57d7b229a7b13a2ee02fcc&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359197.jpg?k=587c1c37814da6868da63fda4486247e701f82cb358fc447747960fc8939236e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359198.jpg?k=10cc02d591eedd259398d756b55c196abc4501ee932835afa601666d13871799&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/644480091.jpg?k=c0c8202bc1b4071f9199c337787caeb98d8da8848995f7829403deeb3acaff7d&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/645591185.jpg?k=17cc324ec0b9b5115d3745009266456f5e6e4ec27b699a00a5faa881d835bc8d&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/284611255.jpg?k=bd5656d40c4492d691ee8886cc7600981dad3fe813459c5d2d6e1bc4340814a8&o="
+          ]
+        },
+        "goa-1": {
+          name: "Hotel Luxury Life",
+          location: "Front Beach, Goa",
+          price: "₹3000",
+          description: "Enjoy a luxurious stay at this beachfront property with stunning views of the Arabian Sea. The hotel features a swimming pool, spa, and multiple dining options.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/589452904.jpg?k=20191014a22032db103a2b8aed07e5e7898485cd762abe4103d6d44f6e37d7d3&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375777708.jpg?k=0c844aae5097ff517e62cc7e36c05f60f804c79b5eb78cffd5078d835738e36b&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359204.jpg?k=e028cac6dfef41c7dcbf32c5e07e79bc2efa83dca656214cacadc86899e13a6e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/156162459.jpg?k=f1123fdc92a9afe2a7693f2ad9d2c1877ee8de3f12c6ad0779b265519662da12&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/612531911.jpg?k=bd46efeacd12d33f59c3ac1316856f310a0252e9f43002316677ed421488e77f&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/144820945.jpg?k=f73c73417444839bd1806058a912558fb2f5e87a40546427afd88729bdc23743&o="
+          ]
+        },
+        "goa-2": {
+          name: "Hotel Luxury Life",
+          location: "Front Beach, Goa",
+          price: "₹3200",
+          description: "This luxury collection resort features 246 rooms and suites with private outdoor spaces, six dining venues, a wellness center, and a multi-level outdoor pool.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/436698221.jpg?k=56fa10de74fea26e8daaf5eda90d0f6b801b67219e3edf8fda8bb035f7864c2e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359197.jpg?k=587c1c37814da6868da63fda4486247e701f82cb358fc447747960fc8939236e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359198.jpg?k=10cc02d591eedd259398d756b55c196abc4501ee932835afa601666d13871799&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/284611152.jpg?k=8182ff2345bc60cf5f65896c0a1072d9c4ae6b4a84bdbd32d5f5ac96e80eed9a&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/284611246.jpg?k=f92f19c72a4b676db243006d9c78d8c99b6245e35d98a05200a305ba521f7fea&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/284611263.jpg?k=763cceb2262703dfe99239c53f14c79cc3162b98b3f4d90a08228a62cdc0b459&o="
+          ]
+        },
+        "goa-3": {
+          name: "Hotel Luxury Life",
+          location: "North Goa",
+          price: "₹3200",
+          description: "Spread across 56 acres of landscaped gardens, this Mediterranean-style resort sits along a private beach overlooking the Arabian Sea. It boasts golfing facilities, a full spa, and outdoor pool.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/669073457.jpg?k=0478e489e9c1a88d0a3fbec96d016decf7805694cd66097106ea0bdbb3ba27a4&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384357983.jpg?k=caffb0428160f6091a813e98f5c998ad1e6caa1a75f78e4d4d894566231b5655&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708557.jpg?k=499de18456982356bfe287e4cd3adf17a216b03504bb5e97dd4efd5023accd6f&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/147276597.jpg?k=266b51e1b01a23d29abfbde1df453a94ae67af14df46122d9483d5d0d613aef8&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/284611032.jpg?k=babae6608653d45fd950aa116bdf9abb5520182225dd827f62a7c3fc8dd1858f&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/645591135.jpg?k=7c8a49b0835067b4aeb0f4a8f97299b5ef7f306c140ba3589c760ba0a8f8e8fb&o="
+          ]
+        },
+        "maldives-1": {
+          name: "Hotel Luxury Life",
+          location: "Great Atoll, Maldives",
+          price: "₹3000",
+          description: "Enjoy fine dining experiences at this resort with multiple restaurants and bars serving exquisite cuisine. The overwater villas offer direct access to the crystal clear lagoon.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/436698223.jpg?k=6bb984b99c0f6f656456b53edb93890dab763aab2fd76925b45ce54f9df41011&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384358709.jpg?k=c2f6612359efe7a46714048fd2fa0e0f54c1b66adb3f30b2f5454873c8cf7655&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375708590.jpg?k=378616d7eb286bcc62e26005b1bdb07f125897e1dcfeeadae9b22a12a5e50702&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/156617482.jpg?k=954b46840e02448517c77ad56181bc0509471e8d9ce3ff82e1ccef2941ad384b&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/156162455.jpg?k=711e0a453bf3b0394d5aadff3f64f74b231aa8a099ed51985567671286bc1934&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/284611251.jpg?k=3e1cff3553bd54c2c81ba7bb50dd4ca37202e9a0952c5e7e4c75f1ebbd32ebb2&o="
+          ]
+        },
+        "maldives-2": {
+          name: "Hotel Luxury Life",
+          location: "Dhaalu Atoll, Maldives",
+          price: "₹3000",
+          description: "This resort features luxurious villas, sumptuous cuisines, and personalized service, with opportunities to create unique island experiences. Located on two pristine islands in Dhaalu Atoll.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/437062579.jpg?k=a7d07dcdbd00019a2c29eee56cd6e1f76a041c0ae9ac542e03cd025694b40491&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375722228.jpg?k=95c1738e73b7b1e97ada583b2735f4909641778712930ee43a4ebc1e48050f80&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359204.jpg?k=e028cac6dfef41c7dcbf32c5e07e79bc2efa83dca656214cacadc86899e13a6e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/436670289.jpg?k=5c3584a9d4d30f8eac98dc849ee0d22717148cf4b5a27515bd26e8c8d83e4a14&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/436670400.jpg?k=f7ba676250fa0711a7eead87b732872e8bfa7183e4c3fb451f6cdc798676640d&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/436698222.jpg?k=ad3b56540089b0452260e77cc587a557254051d6ac02748867a584784df75bad&o="
+          ]
+        },
+        "maldives-3": {
+          name: "Hotel Luxury Life",
+          location: "Noonu Atoll, Maldives",
+          price: "₹3000",
+          description: "This 5-star resort boasts spacious private pool sanctuaries and ultra-luxe residences, featuring the world's first oceanic underwater restaurant and wine cellar.",
+          images: [
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/437062653.jpg?k=03d91caf654ebaf10b3035390d9ab6a6f2f1025899794da0cc8de83f86406156&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/375777708.jpg?k=0c844aae5097ff517e62cc7e36c05f60f804c79b5eb78cffd5078d835738e36b&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/384359197.jpg?k=587c1c37814da6868da63fda4486247e701f82cb358fc447747960fc8939236e&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/436670332.jpg?k=b2d28a2cb43101d8c647aadd5846d8546c8f26667935b2a0416ca49d64457a4c&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/436698258.jpg?k=445820003c30d0c09ccf3de3b55911cdaa772c3ab781024d982cc7f0c3e8ab96&o=",
+            "https://cf.bstatic.com/xdata/images/hotel/max1024x768/437058995.jpg?k=ecdb2c4cf01b393dd483dd0270a2404eb63452bc757064e73f67b79f7af34e21&o="
+          ]
+        }
+      };
+
+      // Get modal elements
+      const modal = document.getElementById("hotelModal");
+      const modalHotelName = document.getElementById("modalHotelName");
+      const modalLocation = document.getElementById("modalLocation");
+      const modalPrice = document.getElementById("modalPrice");
+      const modalDescription = document.getElementById("modalDescription");
+      const mainImage = document.getElementById("mainImage");
+      const thumbnailsContainer = document.querySelector(".gallery-thumbnails");
+      const closeModalBtn = document.querySelector(".close-modal");
+      const decreaseGuestsBtn = document.getElementById("decreaseGuests");
+      const increaseGuestsBtn = document.getElementById("increaseGuests");
+      const guestCount = document.getElementById("guestCount");
+      // const confirmBookingBtn = document.getElementById("confirmBooking");
+      // const bookingConfirmation = document.getElementById("bookingConfirmation");
+
+      // Open modal with hotel details
+      function openModal(hotelId) {
+        const hotel = hotelData[hotelId];
+        
+        if (!hotel) {
+          console.error("Hotel data not found for ID:", hotelId);
+          return;
+        }
+
+        // Fill modal content
+        modalHotelName.textContent = hotel.name;
+        modalLocation.textContent = hotel.location;
+        modalPrice.textContent = hotel.price + " per night";
+        modalDescription.textContent = hotel.description;
+
+        // Reset gallery
+        thumbnailsContainer.innerHTML = "";
+        mainImage.src = hotel.images[0];
+        mainImage.alt = hotel.name;
+
+        // Create thumbnails
+        hotel.images.forEach((imgSrc, index) => {
+          const thumb = document.createElement("div");
+          thumb.className = "gallery-thumb";
+          if (index === 0) thumb.classList.add("active");
+
+          const thumbImg = document.createElement("img");
+          thumbImg.src = imgSrc;
+          thumbImg.alt = `${hotel.name} - Image ${index + 1}`;
+
+          thumb.appendChild(thumbImg);
+          thumb.addEventListener("click", () => {
+            mainImage.src = imgSrc;
+            document
+              .querySelectorAll(".gallery-thumb")
+              .forEach((t) => t.classList.remove("active"));
+            thumb.classList.add("active");
+          });
+
+          thumbnailsContainer.appendChild(thumb);
+        });
+
+        // Show modal
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      // Close modal
+      function closeModal() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      // Event listeners for modal
+      closeModalBtn.addEventListener("click", closeModal);
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeModal();
+      });
+
+      // Attach event to hotel cards
+      const hotelCards = document.querySelectorAll(".hotel-card");
+      hotelCards.forEach((card) => {
+        const bookBtn = card.querySelector(".book-now");
+        const hotelImage = card.querySelector(".hotel-image");
+        const hotelId = card.getAttribute("data-id");
+        
+        bookBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          openModal(hotelId);
+        });
+        
+        hotelImage.addEventListener("click", function() {
+          openModal(hotelId);
+        });
+      });
+
+      // Guest counter functionality
+      let guests = 1;
+      decreaseGuestsBtn.addEventListener("click", () => {
+        if (guests > 1) {
+          guests--;
+          guestCount.textContent = guests;
+        }
+      });
+
+      increaseGuestsBtn.addEventListener("click", () => {
+        if (guests < 10) {
+          guests++;
+          guestCount.textContent = guests;
+        }
+      });
+
+      // Booking confirmation
+      confirmBookingBtn.addEventListener("click", () => {
+        const checkIn = document.getElementById("checkIn").value;
+        const checkOut = document.getElementById("checkOut").value;
+
+        if (!checkIn || !checkOut) {
+          alert("Please select check-in and check-out dates");
+          return;
+        }
+
+        bookingConfirmation.classList.add("active");
+
+        setTimeout(() => {
+          bookingConfirmation.classList.remove("active");
+          closeModal();
+        }, 3000);
+      });
+
+      // Close confirmation if clicked outside
+      bookingConfirmation.addEventListener("click", function (e) {
+        if (e.target === this) {
+          this.classList.remove("active");
+        }
+      });
+
+      // Set minimum date for check-in as today
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, "0");
+      const dd = String(today.getDate()).padStart(2, "0");
+      const todayStr = `${yyyy}-${mm}-${dd}`;
+      document.getElementById("checkIn").min = todayStr;
+
+      // Update check-out min date when check-in changes
+      document.getElementById("checkIn").addEventListener("change", function () {
+        document.getElementById("checkOut").min = this.value;
+      });
+
+      // Search form functionality
+      const locationForm = document.getElementById("locationForm");
+      locationForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const selectedLocations = [];
+        const checkboxes = locationForm.querySelectorAll('input[name="location"]:checked');
+        
+        checkboxes.forEach(checkbox => {
+          selectedLocations.push(checkbox.value);
+        });
+        
+        if (selectedLocations.length === 0) {
+          // Show all hotels if no location is selected
+          document.querySelectorAll('.hotel-card').forEach(card => {
+            card.style.display = 'block';
+          });
+          return;
+        }
+        
+        // Filter hotels by selected locations
+        document.querySelectorAll('.hotel-card').forEach(card => {
+          const cardLocation = card.getAttribute('data-location');
+          if (selectedLocations.includes(cardLocation)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
