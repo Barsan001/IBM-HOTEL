@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="description" content="Luxury Life Hotel - Experience premium hospitality with world-class amenities">
+  <title>Luxury Life Hotel</title>
+  
+  <!-- Preload critical fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <!-- External Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container flex_space">
+      <div class="logo">
+        <div class="logobox">
+          <img src="./hotel_logo.png" alt="">
+        </div>
+        <span class="logo-text">Hotel Luxury Life</span>
+      </div>
+      
+      <div class="navlinks" id="navlinks">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="header-btn">Book Now</button>
+      </div>
+      
+      <div class="header-controls">
+        <i class="fa fa-search search-icon" id="searchIcon"></i>
+        <i class="fa fa-bars menu-toggle" id="menuToggle"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home Section -->
+  <section class="home split" id="home">
+    <div class="container">
+      <div class="split-wrap">
+        <!-- Media/Carousel -->
+        <div class="media">
+          <div class="owl-carousel home-carousel">
+            <div class="item">
+              <img src="https://i.pinimg.com/1200x/f2/ef/31/f2ef311e00c3b78bab4537c604cbeb01.jpg" alt="Luxury Hotel Room">
+            </div>
+            <div class="item">
+              <img src="https://i.pinimg.com/736x/57/f8/10/57f810ca973589beaeda8e28eaf26588.jpg" alt="Hotel Lobby">
+            </div>
+            <div class="item">
+              <img src="https://i.pinimg.com/736x/2c/84/da/2c84dae1c2be0297d688023c45189e15.jpg" alt="Hotel Pool">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/8e/db/ec/8edbecbd9cd525f025ac7e80b1954c69.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/b8/c9/c4/b8c9c4ea184110169275be5e7ded932d.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/736x/17/35/77/173577eb618ad7d4ea481998ce66f6ba.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/74/97/08/749708d44d39baaf79f4fa3bc8ff6c92.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/dc/4f/35/dc4f350c640eb5287b6b4eef7588db95.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/9f/03/c6/9f03c6f6de31c79657e78b1bc9247200.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/bf/94/e6/bf94e6ad9deb9484d8e613b9179f16d6.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/f2/9a/31/f29a31a7179eec0e4594e65821a0203f.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/736x/91/53/db/9153dbcb2b5950672e8197efd5efddce.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/5d/32/81/5d328154aa1d91d988d0d1dd637b8b25.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/c6/1e/ff/c61efff2a733580181f749ec90cc96e7.jpg" alt="Hotel Restaurant">
+            </div>
+             <div class="item">
+              <img src="https://i.pinimg.com/1200x/d7/b2/d9/d7b2d986e49f5102d8f38f327488b45b.jpg" alt="Hotel Restaurant">
+            </div>
+          </div>
+        </div>
+        <!-- Text Content -->
+        <div class="text-pane">
+          <div class="eyebrow">Welcome to luxury</div>
+          <h1>Experience Unmatched Comfort</h1>
+          <p>Discover the perfect blend of luxury and comfort at our premium hotel. With world-class amenities, exceptional service, and breathtaking views, your stay with us will be an unforgettable experience.</p>
+          <div class="flex">
+            <div class="primary-btn" onclick="barsan()">
+              <a href="./hotel/code2.html">Book Your Stay</a>
+            </div>
+            <div class="secondary-btn">Explore Rooms</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <!-- <section class="book" id="booking">
+    <div class="container">
+      <h1>Book Your <span>Stay</span></h1>
+      <div class="grid">
+        <input type="date" placeholder="Check-in Date">
+        <input type="date" placeholder="Check-out Date">
+        <input type="number" placeholder="Adults" min="1" max="10">
+        <input type="number" placeholder="Children" min="0" max="10">
+        <input type="text" placeholder="Special Requests">
+        <input type="submit" value="Check Availability">
+      </div>
+    </div>
+  </section> -->
+
+  <!-- About Section -->
+  <section class="about top" id="about">
+    <div class="container flex">
+      <div class="left">
+        <div class="heading">
+          <h1>ABOUT</h1>
+          <h2>Why Choose Our Hotel?</h2>
+        </div>
+        <p>
+          At Luxury Life Hotel, we believe that every guest deserves an extraordinary experience. Our commitment to excellence is reflected in every aspect of our service, from our elegantly appointed rooms to our world-class dining options.
+        </p>
+        <p>
+          With over two decades of hospitality excellence, we have perfected the art of making our guests feel at home while providing them with luxury beyond their expectations. Our dedicated staff is available 24/7 to ensure your comfort and satisfaction.
+        </p>
+        <button class="primary-btn">Learn More About Us</button>
+      </div>
+      <div class="right">
+        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Interior">
+      </div>
+    </div>
+  </section>
+
+  <!-- Counter Section -->
+  <section class="counter">
+    <div class="container">
+      <div class="grid">
+        <div>
+          <h1 class="count-number">150</h1>
+          <hr>
+          <h3>Rooms</h3>
+        </div>
+        <div>
+          <h1 class="count-number">50</h1>
+          <hr>
+          <h3>Staff</h3>
+        </div>
+        <div>
+          <h1 class="count-number">1500</h1>
+          <hr>
+          <h3>Happy Guests</h3>
+        </div>
+        <div>
+          <h1 class="count-number">15</h1>
+          <hr>
+          <h3>Years Experience</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms Section -->
+  <!-- <section class="rooms top" id="rooms">
+    <div class="container">
+      <div class="heading">
+        <h1>ROOMS</h1>
+        <h2>Luxurious Accommodations</h2>
+      </div>
+      
+      <div class="rooms-grid">
+        <div class="room-card">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Deluxe Room">
+          <div class="room-content">
+            <h3>Deluxe Room</h3>
+            <p>Spacious rooms with modern amenities and city views.</p>
+            <div class="price">$199/night</div>
+            <button class="primary-btn">Book Now</button>
+          </div>
+        </div>
+        
+        <div class="room-card">
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Executive Suite">
+          <div class="room-content">
+            <h3>Executive Suite</h3>
+            <p>Premium suites with separate living area and panoramic views.</p>
+            <div class="price">$299/night</div>
+            <button class="primary-btn">Book Now</button>
+          </div>
+        </div>
+        
+        <div class="room-card">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Presidential Suite">
+          <div class="room-content">
+            <h3>Presidential Suite</h3>
+            <p>The ultimate in luxury with private balcony and butler service.</p>
+            <div class="price">$599/night</div>
+            <button class="primary-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Gallery Section -->
+  <section class="gallery top" id="gallery">
+    <div class="container">
+      <div class="heading">
+        <h1>GALLERY</h1>
+        <h2>Explore Our Beautiful Spaces</h2>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hotel Spa">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fitness Center">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Swimming Pool">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact top" id="contact">
+    <div class="container">
+      <div class="heading">
+        <h1>CONTACT</h1>
+        <h2>Get In Touch With Us</h2>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Address</h4>
+              <p>123 Luxury Avenue, Downtown City, DC 12345</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Phone</h4>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>info@luxurylifehotel.com</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Subject" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit" class="primary-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="logo">
+            <div class="logobox footer_box">
+              <img src="./hotel_logo.png" alt="">
+            </div>
+            <span class="logo-text">Hotel Luxury Life</span>
+          </div>
+          <p>Experience the finest in hospitality with our world-class amenities and exceptional service.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#rooms">Rooms</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Luxury Life Hotel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
